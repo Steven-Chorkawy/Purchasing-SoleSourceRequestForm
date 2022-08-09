@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.15.0",
+    "libraryName": "purchasing-sole-source-request-form",
+    "libraryId": "8b582347-0042-4dc2-b946-b576bcee37d5",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "purchasing-sole-source-request-form",
+    "solutionShortDescription": "purchasing-sole-source-request-form description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

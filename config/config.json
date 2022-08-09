@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sole-source-request-form-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/soleSourceRequestForm/SoleSourceRequestFormWebPart.js",
+          "manifest": "./src/webparts/soleSourceRequestForm/SoleSourceRequestFormWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SoleSourceRequestFormWebPartStrings": "lib/webparts/soleSourceRequestForm/loc/{locale}.js"
+  }
+}

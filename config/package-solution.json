@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "purchasing-sole-source-request-form-client-side-solution",
+    "id": "8b582347-0042-4dc2-b946-b576bcee37d5",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.15.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "purchasing-sole-source-request-form description"
+      },
+      "longDescription": {
+        "default": "purchasing-sole-source-request-form description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "purchasing-sole-source-request-form Feature",
+        "description": "The feature that activates elements of the purchasing-sole-source-request-form solution.",
+        "id": "6217e96b-c823-4a44-bcd2-5d209b3eccf2",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/purchasing-sole-source-request-form.sppkg"
+  }
+}
