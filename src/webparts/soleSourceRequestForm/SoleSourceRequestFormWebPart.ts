@@ -18,18 +18,14 @@ export interface ISoleSourceRequestFormWebPartProps {
 
 export default class SoleSourceRequestFormWebPart extends BaseClientSideWebPart<ISoleSourceRequestFormWebPartProps> {
 
-  private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = '';
+  // private _isDarkTheme: boolean = false;
+  // private _environmentMessage: string = '';
 
   public render(): void {
     const element: React.ReactElement<ISoleSourceRequestFormProps> = React.createElement(
       SoleSourceRequestForm,
       {
-        description: this.properties.description,
-        isDarkTheme: this._isDarkTheme,
-        environmentMessage: this._environmentMessage,
-        hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        description: this.properties.description
       }
     );
 
@@ -37,25 +33,25 @@ export default class SoleSourceRequestFormWebPart extends BaseClientSideWebPart<
   }
 
   protected onInit(): Promise<void> {
-    this._environmentMessage = this._getEnvironmentMessage();
+    //this._environmentMessage = this._getEnvironmentMessage();
 
     return super.onInit();
   }
 
-  private _getEnvironmentMessage(): string {
-    if (!!this.context.sdks.microsoftTeams) { // running in Teams
-      return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
-    }
+  // private _getEnvironmentMessage(): string {
+  //   if (!!this.context.sdks.microsoftTeams) { // running in Teams
+  //     return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
+  //   }
 
-    return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment;
-  }
+  //   return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment;
+  // }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
     if (!currentTheme) {
       return;
     }
 
-    this._isDarkTheme = !!currentTheme.isInverted;
+    //this._isDarkTheme = !!currentTheme.isInverted;
     const {
       semanticColors
     } = currentTheme;
