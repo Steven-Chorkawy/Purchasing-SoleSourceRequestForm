@@ -15,12 +15,11 @@ import { DepartmentDetails } from './DepartmentDetails';
 import { VendorDetails } from './VendorDetails';
 import { ValueDetails } from './ValueDetails';
 import { ReasonForSoleSourceDetails } from './ReasonForSoleSourceReason';
-import { RationalForSoleSourceDetails } from './RationalForSoleSourceDetails';
 import { ITSoleSourceDetails } from './ITSoleSourceDetails';
 import { LegalAgreementDetails } from './LegalAgreementDetails';
 
 
-const stepPages = [DepartmentDetails, VendorDetails, ValueDetails, ReasonForSoleSourceDetails, RationalForSoleSourceDetails, ITSoleSourceDetails, LegalAgreementDetails];
+const stepPages = [DepartmentDetails, VendorDetails, ValueDetails, ReasonForSoleSourceDetails, ITSoleSourceDetails, LegalAgreementDetails];
 
 interface IStepsInterface {
   isValid: boolean | undefined;
@@ -50,10 +49,44 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
         { label: "Legal Agreement", isValid: undefined },
       ],
     };
+
+    this.lastStepIndex = this.state.steps.length - 1;
+    this.isLastStep = this.lastStepIndex === this.state.step;
   }
 
-  private lastStepIndex = this.state.steps.length - 1;
-  private isLastStep = this.lastStepIndex === this.state.step;
+  private lastStepIndex:number = undefined;
+  private isLastStep:boolean = undefined
+
+  private onStepSubmit = (event: FormSubmitClickEvent) => {
+    const { isValid, values } = event;
+
+    const currentSteps = this.state.steps.map(
+      (currentStep: IStepsInterface, index: number) => ({
+        ...currentStep,
+        isValid: index === this.state.step ? isValid : currentStep.isValid,
+      })
+    );
+
+    this.setState({ steps: currentSteps });
+
+    if (!isValid) {
+      return;
+    }
+
+    this.setState({
+      step: Math.min(this.state.step + 1, this.lastStepIndex),
+      formState: values,
+    });
+
+    if (this.lastStepIndex === this.state.step) {
+      alert(JSON.stringify(values));
+    }
+  };
+
+  private onPrevClick = (event) => {
+    event.preventDefault();
+    this.setState({ step: Math.max(this.state.step - 1, 0) });
+  };
 
   public render(): React.ReactElement<ISoleSourceRequestFormProps> {
     const {
@@ -69,6 +102,57 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
         <MessageBar messageBarType={MessageBarType.warning}>
           <b>* Proper approvals must be obtained for sole source purchases prior to the commitment for the purchase of the goods or services.</b>
         </MessageBar>
+        <hr />
+
+        <Stepper value={this.state.step} items={this.state.steps} />
+        <div>
+          <Form
+            initialValues={this.state.formState}
+            onSubmitClick={this.onStepSubmit}
+            render={(formRenderProps: FormRenderProps) => (
+              <div style={{ alignSelf: "center" }}>
+                <FormElement style={{ width: 480 }}>
+                  {stepPages[this.state.step]}
+                  <span
+                    style={{ marginTop: "40px" }}
+                    className={"k-form-separator"}
+                  />
+                  <div
+                    style={{
+                      justifyContent: "space-between",
+                      alignContent: "center",
+                    }}
+                    className={
+                      "k-form-buttons k-button k-button-md k-rounded-md k-button-solid k-button-solid-bases-end"
+                    }
+                  >
+                    <span style={{ alignSelf: "center" }}>
+                      Step {this.state.step + 1} of 3
+                    </span>
+                    <div>
+                      {this.state.step !== 0 ? (
+                        <Button
+                          style={{ marginRight: "16px" }}
+                          onClick={this.onPrevClick}
+                        >
+                          Previous
+                        </Button>
+                      ) : undefined}
+                      <Button
+                        themeColor={"primary"}
+                        disabled={!formRenderProps.allowSubmit}
+                        onClick={formRenderProps.onSubmit}
+                      >
+                        {this.isLastStep ? "Submit" : "Next"}
+                      </Button>
+                    </div>
+                  </div>
+                </FormElement>
+              </div>
+            )}
+          />
+        </div>
+
       </div>
     );
   }

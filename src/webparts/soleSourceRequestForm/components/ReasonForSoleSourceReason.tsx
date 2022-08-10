@@ -12,7 +12,7 @@ import { Field } from '@progress/kendo-react-form';
 
 export const ReasonForSoleSourceDetails = (
   <div>
-    ReasonForSoleSourceDetails
+    Reason and Rational
     {/* <Field
       key={'userName'}
       id={'userName'}
