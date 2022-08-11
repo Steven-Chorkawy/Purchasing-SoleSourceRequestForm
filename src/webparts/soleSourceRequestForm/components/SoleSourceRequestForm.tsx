@@ -3,11 +3,13 @@ import { ISoleSourceRequestFormProps } from './ISoleSourceRequestFormProps';
 import { Button, MessageBar, MessageBarType, PrimaryButton, TextField } from '@fluentui/react';
 import {
   Field,
+  FieldWrapper,
   Form,
   FormElement,
   FormRenderProps,
   FormSubmitClickEvent,
 } from "@progress/kendo-react-form";
+import { Label } from '@progress/kendo-react-labels';
 
 interface ISoleSourceRequestFormState {
 }
@@ -42,14 +44,27 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
         <Form
           onSubmit={this.handleSubmit}
           render={(formRenderProps: FormRenderProps) => (
-            <FormElement style={{ maxWidth: 650 }}>
+            <FormElement style={{ maxWidth: 650 }} horizontal={true}>
               <legend className={"k-form-legend"}>Department Information</legend>
-              <Field
-                name={"Department"}
-                component={TextField}
-                label={"Department"}
-              // validator={emailValidator}
-              />
+              
+              <FieldWrapper>
+                <Label editorId={'Department'} >
+                  {'Department'}
+                </Label>
+                <div className={"k-form-field-wrap"}>
+                  <TextField id={'Department'} name={'Department'} />
+                </div>
+              </FieldWrapper>
+
+              <FieldWrapper>
+                <Label editorId={'Department2'} >
+                  {'Department2'}
+                </Label>
+                <div className={"k-form-field-wrap"}>
+                  <TextField id={'Department2'} name={'Department2'} />
+                </div>
+              </FieldWrapper>
+
               <div className="k-form-buttons">
                 <PrimaryButton text="Submit" type='submit' allowDisabledFocus disabled={!formRenderProps.allowSubmit} />
               </div>
