@@ -10,6 +10,7 @@ import {
   FormSubmitClickEvent,
 } from "@progress/kendo-react-form";
 import { Label } from '@progress/kendo-react-labels';
+import { ModernTaxonomyPicker } from '@pnp/spfx-controls-react';
 
 interface ISoleSourceRequestFormState {
 }
@@ -24,6 +25,10 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
   private handleSubmit = (values) => {
     console.log('handleSubmit');
     console.log(values);
+  }
+
+  private onTaxPickerChange(terms) {
+    console.log("Terms", terms);
   }
 
   public render(): React.ReactElement<ISoleSourceRequestFormProps> {
@@ -44,14 +49,18 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
         <Form
           onSubmit={this.handleSubmit}
           render={(formRenderProps: FormRenderProps) => (
-            <FormElement horizontal={true}>
+            <FormElement>
               <legend className={"k-form-legend"}>Department Information</legend>
               <FieldWrapper>
-                <Label editorId={'Department'} >
-                  {'Department'}
-                </Label>
                 <div className={"k-form-field-wrap"}>
-                  <TextField id={'Department'} name={'Department'} />
+                  <ModernTaxonomyPicker
+                    allowMultipleSelections={false}
+                    termSetId="8ed8c9ea-7052-4c1d-a4d7-b9c10bffea6f"
+                    panelTitle="Select Term"
+                    label="Taxonomy Picker"
+                    context={this.props.context}
+                    onChange={this.onTaxPickerChange}
+                  />
                 </div>
               </FieldWrapper>
 

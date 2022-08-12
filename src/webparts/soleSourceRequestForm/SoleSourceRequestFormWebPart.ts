@@ -28,7 +28,8 @@ export default class SoleSourceRequestFormWebPart extends BaseClientSideWebPart<
     const element: React.ReactElement<ISoleSourceRequestFormProps> = React.createElement(
       SoleSourceRequestForm,
       {
-        description: this.properties.description
+        description: this.properties.description,
+        context: this.context
       }
     );
 
