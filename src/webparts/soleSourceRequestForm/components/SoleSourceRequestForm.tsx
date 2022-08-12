@@ -34,20 +34,6 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
 
     return (
       <div>
-        <div className='row'>
-          <div className='col-lg-1'>1</div>
-          <div className='col-lg-1'>2</div>
-          <div className='col-lg-1'>3</div>
-          <div className='col-lg-1'>4</div>
-          <div className='col-lg-1'>5</div>
-          <div className='col-lg-1'>6</div>
-          <div className='col-lg-1'>7</div>
-          <div className='col-lg-1'>8</div>
-          <div className='col-lg-1'>9</div>
-          <div className='col-lg-1'>10</div>
-          <div className='col-lg-1'>11</div>
-          <div className='col-lg-1'>12</div>
-        </div>
         <h1>Sole Source Request Form</h1>
         <MessageBar messageBarType={MessageBarType.warning}>
           <b>* Client must ensure that the form is reviewed by the Purchasing Division prior to receiving any departmental approval.</b>
@@ -60,27 +46,6 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
           render={(formRenderProps: FormRenderProps) => (
             <FormElement horizontal={true}>
               <legend className={"k-form-legend"}>Department Information</legend>
-
-              <div>
-                <div className="row">
-                  <div className="col-lg-6">
-                    lg 6 1
-                  </div>
-                  <div className="col-lg-6">
-                    lg 6 2
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-sm-6">
-                    sm 6 1
-                  </div>
-                  <div className="col-sm-6">
-                    sm 6 2
-                  </div>
-                </div>
-              </div>
-
               <FieldWrapper>
                 <Label editorId={'Department'} >
                   {'Department'}
@@ -98,6 +63,8 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
                   <TextField id={'Department2'} name={'Department2'} />
                 </div>
               </FieldWrapper>
+
+              <legend className={"k-form-legend"}>Vendor Information</legend>
 
               <div className="k-form-buttons">
                 <PrimaryButton text="Submit" type='submit' allowDisabledFocus disabled={!formRenderProps.allowSubmit} />
