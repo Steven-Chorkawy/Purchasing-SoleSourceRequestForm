@@ -44,9 +44,8 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
         <Form
           onSubmit={this.handleSubmit}
           render={(formRenderProps: FormRenderProps) => (
-            <FormElement style={{ maxWidth: 650 }} horizontal={true}>
+            <FormElement horizontal={true}>
               <legend className={"k-form-legend"}>Department Information</legend>
-              
               <FieldWrapper>
                 <Label editorId={'Department'} >
                   {'Department'}
@@ -64,6 +63,8 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
                   <TextField id={'Department2'} name={'Department2'} />
                 </div>
               </FieldWrapper>
+
+              <legend className={"k-form-legend"}>Vendor Information</legend>
 
               <div className="k-form-buttons">
                 <PrimaryButton text="Submit" type='submit' allowDisabledFocus disabled={!formRenderProps.allowSubmit} />

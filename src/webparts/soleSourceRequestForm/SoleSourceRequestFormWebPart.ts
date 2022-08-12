@@ -11,6 +11,8 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'SoleSourceRequestFormWebPartStrings';
 import SoleSourceRequestForm from './components/SoleSourceRequestForm';
 import { ISoleSourceRequestFormProps } from './components/ISoleSourceRequestFormProps';
+
+import '../../bootstrap.css';
 import '@progress/kendo-theme-bootstrap/dist/all.css';
 
 export interface ISoleSourceRequestFormWebPartProps {
