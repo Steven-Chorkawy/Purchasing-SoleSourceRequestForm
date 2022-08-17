@@ -11,6 +11,7 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'SoleSourceRequestFormWebPartStrings';
 import SoleSourceRequestForm from './components/SoleSourceRequestForm';
 import { ISoleSourceRequestFormProps } from './components/ISoleSourceRequestFormProps';
+import { sp } from "@pnp/sp";
 
 import '../../bootstrap.css';
 import '@progress/kendo-theme-bootstrap/dist/all.css';
@@ -39,7 +40,18 @@ export default class SoleSourceRequestFormWebPart extends BaseClientSideWebPart<
   protected onInit(): Promise<void> {
     //this._environmentMessage = this._getEnvironmentMessage();
 
-    return super.onInit();
+    return super.onInit()
+      .then(_ => {
+        sp.setup({
+          spfxContext: this.context as any,
+          sp: {
+            headers: {
+              "Accept": "application/json; odata=nometadata"
+            },
+            baseUrl: this.context.pageContext.web.absoluteUrl
+          }
+        })
+      });
   }
 
   // private _getEnvironmentMessage(): string {
