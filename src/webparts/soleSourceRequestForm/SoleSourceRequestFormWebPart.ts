@@ -38,10 +38,8 @@ export default class SoleSourceRequestFormWebPart extends BaseClientSideWebPart<
   }
 
   protected onInit(): Promise<void> {
-    //this._environmentMessage = this._getEnvironmentMessage();
-
     return super.onInit()
-      .then(_ => {
+      .then(() => {
         sp.setup({
           spfxContext: this.context as any,
           sp: {

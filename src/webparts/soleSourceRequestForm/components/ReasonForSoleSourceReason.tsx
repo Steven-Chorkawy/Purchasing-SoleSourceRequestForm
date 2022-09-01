@@ -1,21 +1,11 @@
 import * as React from 'react';
 
-import { Field } from '@progress/kendo-react-form';
-
-// import {
-//     FormInput, FormUpload
-// } from './form-components';
-
-// import {
-//     userNameValidator, emailValidator, passwordValidator
-// } from './validators'
-
-export const ReasonForSoleSourceDetails = (
+export const ReasonForSoleSourceDetails: JSX.Element = (
   <div>
     Reason and Rational
     {/* <Field
       key={'userName'}
-      id={'userName'}
+      id={'userNamxe'}
       name={'userName'}
       label={'Username'}
       component={FormInput}
