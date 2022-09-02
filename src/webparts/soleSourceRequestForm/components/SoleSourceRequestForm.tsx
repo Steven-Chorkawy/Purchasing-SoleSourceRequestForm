@@ -9,6 +9,7 @@ import {
 } from "@progress/kendo-react-form";
 import { Label } from '@progress/kendo-react-labels';
 import { ModernTaxonomyPicker } from '@pnp/spfx-controls-react';
+import { DynamicForm } from "@pnp/spfx-controls-react/lib/DynamicForm";
 import { PDFExport } from '@progress/kendo-react-pdf';
 import { drawDOM, exportPDF } from '@progress/kendo-drawing';
 import { sp } from "@pnp/sp";
@@ -103,11 +104,23 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
           fileName={`Report for ${new Date().getFullYear()}`}
           author="Sole Source Form"
         >
-
-          <Form
+          <DynamicForm
+            context={this.props.context}
+            contentTypeId={"0x0120D52000DAE0C25BA418814BBCDA9B43C942BED9"}
+            listId={"6c584d6d-4bd8-4c7e-a511-784a7f4d4515"}
+            listItemId={null}
+            onCancelled={() => { console.log('Cancelled') }}
+            onBeforeSubmit={async (listItem) => { return true; }}
+            onSubmitError={(listItem, error) => { alert(error.message); }}
+            onSubmitted={async (listItemData) => { console.log(listItemData); }}
+            fieldOverrides={
+              { 'Title': () => { <h1>hello</h1> } }
+            }
+          >
+          </DynamicForm>
+          {/* <Form
             onSubmit={this._handleSubmit}
             render={(formRenderProps: FormRenderProps) => (
-
               <div id="ExportHere">
                 <h1>Sole Source Request Form</h1>
                 <MessageBar messageBarType={MessageBarType.warning}>
@@ -148,7 +161,7 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
                 </FormElement>
               </div>
             )}
-          />
+          /> */}
         </PDFExport>
       </div >
     );
