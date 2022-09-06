@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ISoleSourceRequestFormProps } from './ISoleSourceRequestFormProps';
 import { DynamicForm } from "@pnp/spfx-controls-react/lib/DynamicForm";
+import { TaxonomyPicker, IPickerTerms } from "@pnp/spfx-controls-react/lib/TaxonomyPicker";
+import { ModernTaxonomyPicker } from "@pnp/spfx-controls-react/lib/ModernTaxonomyPicker";
 import { PDFExport } from '@progress/kendo-react-pdf';
 import { drawDOM, exportPDF } from '@progress/kendo-drawing';
 import { sp } from "@pnp/sp";
@@ -99,17 +101,29 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
             context={this.props.context}
             contentTypeId={"0x0120D52000DAE0C25BA418814BBCDA9B43C942BED9"}
             listId={"6c584d6d-4bd8-4c7e-a511-784a7f4d4515"}
-            listItemId={null}
+            listItemId={2}
             onCancelled={() => { console.log('Cancelled') }}
             onBeforeSubmit={async (listItem) => { return true; }}
             onSubmitError={(listItem, error) => { alert(error.message); }}
             onSubmitted={async (listItemData) => { console.log(listItemData); }}
             // fieldOverrides={
             //   {
-            //     'VendorAddress': (fieldProperties) => {
-            //       console.log('fieldOverrides');
+            //     'FileLeafRef': (fieldProperties) => {
             //       console.log(fieldProperties);
-            //       return <h1>hello</h1>
+            //       return <h5>title field..</h5>;
+            //     },
+            //     'VendorAddress': (fieldProperties) => {
+            //       return <h5>hello</h5>;
+            //     },
+            //     'Department_MM': (fieldProperties) => {
+            //       return <ModernTaxonomyPicker
+            //         allowMultipleSelections={false}
+            //         termSetId="8ed8c9ea-7052-4c1d-a4d7-b9c10bffea6f"
+            //         panelTitle="Select Term"
+            //         label={fieldProperties.label}
+            //         context={this.props.context}
+            //         onChange={this._onTaxPickerChange}
+            //       />;
             //     }
             //   }
             // }
