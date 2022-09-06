@@ -1,14 +1,5 @@
 import * as React from 'react';
 import { ISoleSourceRequestFormProps } from './ISoleSourceRequestFormProps';
-import { MessageBar, MessageBarType, PrimaryButton, TextField } from '@fluentui/react';
-import {
-  FieldWrapper,
-  Form,
-  FormElement,
-  FormRenderProps,
-} from "@progress/kendo-react-form";
-import { Label } from '@progress/kendo-react-labels';
-import { ModernTaxonomyPicker } from '@pnp/spfx-controls-react';
 import { DynamicForm } from "@pnp/spfx-controls-react/lib/DynamicForm";
 import { PDFExport } from '@progress/kendo-react-pdf';
 import { drawDOM, exportPDF } from '@progress/kendo-drawing';
@@ -113,9 +104,15 @@ export default class SoleSourceRequestForm extends React.Component<ISoleSourceRe
             onBeforeSubmit={async (listItem) => { return true; }}
             onSubmitError={(listItem, error) => { alert(error.message); }}
             onSubmitted={async (listItemData) => { console.log(listItemData); }}
-            fieldOverrides={
-              { 'Title': () => { <h1>hello</h1> } }
-            }
+            // fieldOverrides={
+            //   {
+            //     'VendorAddress': (fieldProperties) => {
+            //       console.log('fieldOverrides');
+            //       console.log(fieldProperties);
+            //       return <h1>hello</h1>
+            //     }
+            //   }
+            // }
           >
           </DynamicForm>
           {/* <Form
